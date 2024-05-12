@@ -18,9 +18,10 @@ public class Main {
 
         String text = pdfTextStripper.getText(pdDocument);
 
-        System.out.println(text);
+        //System.out.println(text);
 
-
+        //todo :  add cleaning methods, to remove text from the first page, and remove page numbers and apply them
+        // on the text
 
 
     }
