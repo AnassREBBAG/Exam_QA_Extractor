@@ -3,9 +3,7 @@ package org.example;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.FieldPosition;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello from QA extractor!");
 
-        PDDocument pdDocument =  PDFLoader.loadPDF("Test_PDF_Extractor.pdf");
+        PDDocument pdDocument =  PDFLoader.loadPDF("Exam_QA_Extractor/src/main/resources/GCP-229ques.pdf");
 
         PDFTextStripper pdfTextStripper = new PDFTextStripper();
 
@@ -24,8 +22,6 @@ public class Main {
         //System.out.println(text);
 
         
-
-
         System.out.println("-------------------------------");
 
         System.out.println(text.replaceAll("\\d+\\n", ""));
@@ -38,6 +34,11 @@ public class Main {
         ArrayList<String> BOptions = new ArrayList<>();
         ArrayList<String> COptions = new ArrayList<>();
         ArrayList<String> DOptions = new ArrayList<>();
+        ArrayList<String> EOptions = new ArrayList<>();
+        ArrayList<String> correctAnswers = new ArrayList<>();
+
+
+
 
         Pattern questionPattern = Pattern.compile("Question \\d+\\n(.*?)(?=Question \\d+|$)", Pattern.DOTALL);
         Matcher matcher = questionPattern.matcher(text);
@@ -47,7 +48,7 @@ public class Main {
             questions.add(question);
 
             // Extract options
-            Pattern optionPattern = Pattern.compile("[A-D]\\..*");
+            Pattern optionPattern = Pattern.compile("[A-E]\\. .*");
             Matcher optionMatcher = optionPattern.matcher(question);
             while (optionMatcher.find()) {
                 String option = optionMatcher.group().trim();
@@ -65,10 +66,21 @@ public class Main {
                     case 'D':
                         DOptions.add(option.substring(3));
                         break;
+                    case 'E':
+                        EOptions.add((option.substring(3)));
                 }
+            }
+
+            // Extract correct answer
+            Pattern answerPattern = Pattern.compile("Correct Answer: ([A-E])");
+            Matcher answerMatcher = answerPattern.matcher(question);
+            if (answerMatcher.find()) {
+                String correctAnswer = answerMatcher.group(1);
+                correctAnswers.add(correctAnswer);
             }
         }
 
+        // Print the ArrayLists
         System.out.println("Questions:");
         System.out.println(questions);
         System.out.println("A Options:");
@@ -79,12 +91,14 @@ public class Main {
         System.out.println(COptions);
         System.out.println("D Options:");
         System.out.println(DOptions);
+        System.out.println("E Options:");
+        System.out.println(EOptions);
+        System.out.println("Correct Answers:");
+        System.out.println(correctAnswers);
+
+
     }
 
 
 
-    //todo :  modify pattern, add the answer
-
-
-    
 }

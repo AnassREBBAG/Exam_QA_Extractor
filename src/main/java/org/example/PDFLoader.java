@@ -13,10 +13,11 @@ public class PDFLoader {
 
         PDDocument pdDocument = null;
         try{
-            pdDocument = PDDocument.load(new File("src/main/resources/Test_PDF_Extractor.pdf"));
+            pdDocument = PDDocument.load(new File(path));
         }
         catch (IOException e){
             e.printStackTrace();
+            System.out.println("file not found");
         }
         return pdDocument;
     }
