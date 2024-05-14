@@ -23,8 +23,7 @@ public class Main {
 
         //System.out.println(text);
 
-        //todo :  add cleaning methods, to remove text from the first page, and remove page numbers and apply them
-        // on the text
+        
 
 
         System.out.println("-------------------------------");
@@ -70,7 +69,6 @@ public class Main {
             }
         }
 
-        // Print the ArrayLists
         System.out.println("Questions:");
         System.out.println(questions);
         System.out.println("A Options:");
@@ -82,6 +80,10 @@ public class Main {
         System.out.println("D Options:");
         System.out.println(DOptions);
     }
+
+
+
+    //todo :  modify pattern, add the answer
 
 
     
