@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello from QA extractor!");
 
-        PDDocument pdDocument =  PDFLoader.loadPDF("Exam_QA_Extractor/src/main/resources/GCP-229ques.pdf");
+        PDDocument pdDocument =  PDFLoader.loadPDF("src/main/resources/GCP-229ques.pdf");
 
         PDFTextStripper pdfTextStripper = new PDFTextStripper();
 
